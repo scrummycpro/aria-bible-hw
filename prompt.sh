@@ -20,7 +20,7 @@ sqlite3 $DB_FILE "CREATE TABLE IF NOT EXISTS api_responses (
 API_ENDPOINT="http://localhost:11434/api/chat"
 
 # Prepare the dynamic content using the $1 variable (Bible book)
-CONTENT="Give me a full bible story, with quiz questions, 5 vocabulary words each in both English and Hebrew. Make this look like a workbook page; add page breaks via markdown and give the answer key on a separate page. Make the story from the book of $1."
+CONTENT="Give me a random 200 word summary bible story from the book of $1;  always include  5 quiz questions; also always include 5 vocabulary words  in both English and Hebrew; omit hebrew alphabet, use english hebrew words. Ensure proper  markdown spacing ; always include answer key; ensure the answer key is at the end on a separate page ."
 
 # Prepare the API data with the dynamic content
 API_DATA=$(cat <<EOF
@@ -50,7 +50,7 @@ CLEAN_RESPONSE=$(echo "$CLEAN_RESPONSE" | sed 's/\\n/\n\n/g' | sed 's/\\//g')
 CURRENT_TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
 # Define instructions to prepend to the PDF with a page break after the instructions
-INSTRUCTIONS="### Instructions\n\n1. Read the story carefully.\n\n2. Answer the quiz questions.\n\n3. Use the answer key provided at the end to check your answers.\n\n4. Review the vocabulary words in both English and Hebrew.
+INSTRUCTIONS="### Instructions\n\n1. Read the story carefully.\n\n2. Answer the quiz questions.\n\n3. Use the answer key provided at the end to check your answers.\n\n4. Review the vocabulary words in both English and Hebrew."
 
 # Define the answer key section with a page break before it
 #ANSWER_KEY="\n\n\\newpage\n\n### Answer Key\n\nHere you will find the correct answers to the quiz questions.\n\n1. The first thing God created was the earth.\n2. God put humans in the Garden of Eden to give them a home.\n3. The name of the forbidden tree was the Tree of Knowledge.\n\n"
